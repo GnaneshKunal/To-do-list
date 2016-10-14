@@ -29,13 +29,25 @@ if(!$mysqli)
          ?><a href="to_do_list.php?task=view_task">View Tasks</a>
             <?php
       }
+      if($ses!='csv'){
+         ?><a href="to_do_list.php?task=csv">Add CSV</a>
+         <?php
+      }
       ?>
+              
                <br />
                <?php
+         if($ses=='' || $ses=='home'){
+            ?>
+            <div style="border:2px solid green; font-size:20px;padding: 9px;margin:20px;">
+               <center>Always Keep Yourself Busy</center>
+            </div>
+             <?php
+              }
          if($ses=='add_task'){
             if(!isset($_POST['submit'])){
             ?>
-                  <a href="to_do_list.php">Home</a><br /><br />
+                  <a href="to_do_list.php?task=home">Home</a><br /><br />
                   <fieldset>
                      <legend>To-Do List</legend>
                      <form method="post">
@@ -120,6 +132,52 @@ if(!$mysqli)
          }
          ?>
                               <?php
+      }
+      if($ses=="csv"){
+         if(!isset($_POST['submit'])){
+            ?>
+            <fieldset>
+               <legend>CSV</legend>
+               <small>Please save your Files under root Direcory</small><br />
+               <form method="post">
+                  Enter File Name: <br />
+               <input type="text" name="fname" />
+               <br /><br />
+               <input name="submit" type="submit" value="submit" />
+               </form>
+            </fieldset>
+            <?php
+         }else{
+            if (($handle = fopen("{$_POST['fname']}.csv", "r")) !== FALSE) {
+    while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+      $insert="INSERT INTO tasks(name,due,priority) VALUES (";
+              $num = count($data);
+              for ($c=0; $c < $num-1; $c++) {
+                 if($data[$c]==''){
+                    $data[$c]=0;
+                 }
+                  if($c==0){
+                  $insert.="'$data[$c]'".",";
+                  }
+                  else{
+                      if($c!=$num-2){
+                          $insert.="'".strtotime($data[$c])."'".  ","; 
+                      }else{
+                          $insert.="'$data[$c]'";
+                      }
+                  }
+              }
+      $insert.=")";
+       if($mysqli->query($insert)){
+          echo "Successfully added the tasks";
+       }else{
+          echo "There's some problem adding your tasks<br /> Please try again.";
+       }
+         }
+            }else{
+               echo "Can't Opent the file";
+            }
+         }
       }
       if($ses=='delete'){
          $id=$_GET['id'];
