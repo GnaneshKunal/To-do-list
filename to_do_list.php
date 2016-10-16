@@ -153,16 +153,13 @@ if(!$mysqli)
       $insert="INSERT INTO tasks(name,due,priority) VALUES (";
               $num = count($data);
               for ($c=0; $c < $num-1; $c++) {
-                 if($data[$c]==''){
-                    $data[$c]=0;
-                 }
-                  if($c==0){
-                  $insert.="'$data[$c]'".",";
-                  }
-                  else{
-                      if($c!=$num-2){
-                          $insert.="'".strtotime($data[$c])."'".  ","; 
-                      }else{
+                 if($c==0){
+                         $insert.="'$data[$c]',";
+                      }
+                      if($c==1){
+                          $insert.="'".strtotime($data[$c])."',";
+                      }
+                      if($c==2){
                           $insert.="'$data[$c]'";
                       }
                   }
