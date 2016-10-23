@@ -154,13 +154,13 @@ if(!$mysqli)
               $num = count($data);
               for ($c=0; $c < $num-1; $c++) {
                  if($c==0){
-                         $insert.="'$data[$c]',";
+                         $insert.="'$data[$c]',"; 
                       }
                       if($c==1){
-                          $insert.="'".strtotime($data[$c])."',";
+                           $insert.="'".strtotime($data[$c])."',"; 
                       }
                       if($c==2){
-                          $insert.="'$data[$c]'";
+                           $insert.="'$data[$c]'";
                       }
                   }
               }
