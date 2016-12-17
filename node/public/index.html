@@ -1,0 +1,118 @@
+<!--
+<!DOCTYPE html>
+<html ng-app="Todo">
+    <head>
+        <title>Todo App</title>
+        
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+        <style>
+         html{
+             overflow-y: scroll;
+         }
+         body{
+             padding-top:50px;
+         }
+         #todo-list{
+             margin-bottom: 30px;
+         } 
+         </style>
+        
+          
+         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+        <script src="angular.js"></script>
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+    </head>
+    <body>
+        <div class="container" ng-controller="mainController">
+            <div class="valign center">
+                <h1>Todo App <span class="card-panel teal lighten-2">{{todos.length}}</span></h1>
+            </div>
+
+            <div id="todo-list" class="row">
+                <div class="col-sm-4 col-sm-offset-4">
+
+                    <div class="filled-in" ng-repeat="todo in todos">
+                       
+                            <input id="todo._id" class="filled-in" type="checkbox" ng-click="deleteTodo(todo._id)">
+                             <label for="todo._id"> {{ todo.text }}
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="todo-form" class="row">
+                <div class="col s12">
+                    <form>
+                        <div class="center valign input-field col s6">
+                            <input id="todo" type="text" class="validate" placeholder="Accomplish more, every day." ng-model="formData.text" />
+                            <label for="todo">ToDo</label>
+                        </div>
+                        <!--<button type="submit" class="btn btn-primary btn-lg" ng-click='createTodo()'>Add</button>
+                        <a class="waves-effect waves-light btn-large"><i class="material-icons right">cloud</i>button</a> -->
+                        <!--
+                        <div class="center valign "><button type="submit" class="waves-effect waves-light btn-large" ng-click='createTodo()'>Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+
+
+    -->
+
+
+<!DOCTYPE html>
+<html ng-app="Todo">
+    <head>
+        <title>Todo App</title>
+         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"> 
+        <style>
+         html{
+             overflow-y: scroll;
+         }
+         body{
+             padding-top:50px;
+         }
+         #todo-list{
+             margin-bottom: 30px;
+         } 
+         </style>
+         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+        <script src="angular.js"></script>
+    </head>
+    <body>
+        <div ng-controller="mainController">
+            <div class="jumbotron text-center">
+                <h1>Todo App <span class="label label-info">{{todos.length}}</span></h1>
+            </div>
+
+            <div id="todo-list" class="row">
+                <div class="col-sm-4 col-sm-offset-4">
+
+                    <div class="checkbox" ng-repeat="todo in todos">
+                        <label>
+                            <input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text }}
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="todo-form" class="row">
+                <div class="col-sm-8 col-sm-offset-2 text-center">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" class="form-control input-lg text-center" placeholder="Accomplish more, every day." ng-model="formData.text" />
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg" ng-click='createTodo()'>ToDo</button>
+                        <!--<a class="waves-effect waves-light btn-large"><i class="material-icons right">cloud</i>button</a>
+                        <button type="submit" class="waves-effect waves-light btn-large" ng-click='createTodo()'>Add</button> -->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
