@@ -64,7 +64,7 @@ app.delete('/todos/:todo_id',(req,res)=>{
         }else{
             Todo.find().exec((err,todos)=>{
                 if(err){
-                    err.status(500).json({msg:'Bad Request'});
+                    res.status(500).json({msg:'Bad Request'});
                 }else{
                     res.status(200).json(todos);
                 }
