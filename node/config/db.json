@@ -1,5 +1,6 @@
 {
-    "user":"gk",
-    "pwd":"monster",
-    "database":"web"
+    /*  add your database details here*/
+    "user":"--username--",
+    "pwd":"--password--",
+    "database":"--database--"
 }
